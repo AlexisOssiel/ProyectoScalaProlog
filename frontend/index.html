@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Diagnóstico Académico</title>
+</head>
+<body>
+<h2>Formulario de estudiante</h2>
+
+<form id="formulario">
+  Nombre: <input type="text" name="nombre"><br>
+  Asistencia: <input type="number" name="asistencia"><br>
+  Promedio: <input type="number" name="promedio"><br>
+  <button type="submit">Diagnosticar</button>
+</form>
+
+<div id="resultado"></div>
+
+<script>
+const form = document.getElementById('formulario')
+form.addEventListener('submit', e => {
+  e.preventDefault()  // evita que recargue la página
+
+  // Captura datos del formulario
+  const nombre = form.nombre.value
+  const asistencia = Number(form.asistencia.value)
+  const promedio = Number(form.promedio.value)
+
+  // Función mínima de clasificación (simula tu Scala)
+  let riesgo = "Bajo"
+  if (promedio < 70 || asistencia < 75) riesgo = "Alto"
+  else if (promedio < 85 || asistencia < 90) riesgo = "Medio"
+
+  // Muestra el resultado
+  document.getElementById('resultado').innerHTML = `
+    Estudiante: ${nombre}<br>
+    Asistencia: ${asistencia}<br>
+    Promedio: ${promedio}<br>
+    Riesgo: ${riesgo}<br>
+  `
+})
+</script>
+</body>
+</html>
