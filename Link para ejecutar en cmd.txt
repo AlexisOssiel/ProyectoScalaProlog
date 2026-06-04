@@ -1,0 +1,8 @@
+cd "C:\Users\Wisi\Downloads\ProyectoScalaProlog\backend-scala"
+
+scala run.scala
+
+scala 
+Estudiante("Nombre","Matrícula",Asistencia,Promedio,TareasEntregadas,"Participación",HorasEstudio,EntregaEvidencias,"NivelComprensión",UsaRecursos)
+
+Estudiante("Lucía","202606",85,78,9,"Media",6,true,"Regular",true)
