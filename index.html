@@ -9,8 +9,18 @@
 
 <form id="formulario">
   Nombre: <input type="text" name="nombre"><br>
-  Asistencia: <input type="number" name="asistencia"><br>
+  Matrícula: <input type="text" name="matricula"><br>
+  Asistencia (%): <input type="number" name="asistencia"><br>
   Promedio: <input type="number" name="promedio"><br>
+  Tareas entregadas: <input type="number" name="tareas"><br>
+  Participación (Alta/Media/Baja): <input type="text" name="participacion"><br>
+  Horas de estudio: <input type="number" name="horas"><br>
+  Entrega evidencias (sí/no): <input type="checkbox" name="evidencias"><br>
+  Nivel de comprensión (Bueno/Regular/Bajo): <input type="text" name="comprension"><br>
+  Usa recursos (sí/no): <input type="checkbox" name="recursos"><br>
+  Trabajo en grupo (sí/no): <input type="checkbox" name="grupo"><br>
+  Motivación (Alta/Media/Baja): <input type="text" name="motivacion"><br>
+  Asistencia a tutorías (sí/no): <input type="checkbox" name="tutorias"><br>
   <button type="submit">Diagnosticar</button>
 </form>
 
@@ -23,21 +33,34 @@ form.addEventListener('submit', e => {
 
   // Captura datos del formulario
   const nombre = form.nombre.value
+  const matricula = form.matricula.value
   const asistencia = Number(form.asistencia.value)
   const promedio = Number(form.promedio.value)
-  
+  const tareas = Number(form.tareas.value)
+  const participacion = form.participacion.value.toLowerCase()
+  const horas = Number(form.horas.value)
+  const evidencias = form.evidencias.checked
+  const comprension = form.comprension.value.toLowerCase()
+  const recursos = form.recursos.checked
+  const grupo = form.grupo.checked
+  const motivacion = form.motivacion.value.toLowerCase()
+  const tutorias = form.tutorias.checked
 
   // Función mínima de clasificación (simula tu Scala)
   let riesgo = "Bajo"
-  if (promedio < 70 || asistencia < 75) riesgo = "Alto"
-  else if (promedio < 85 || asistencia < 90) riesgo = "Medio"
+  if (promedio < 70 || asistencia < 75 || tareas < 5) riesgo = "Alto"
+  else if (promedio < 85 || asistencia < 90 || tareas < 8) riesgo = "Medio"
 
-  // Muestra el resultado
+  // Mostrar resultado
   document.getElementById('resultado').innerHTML = `
-    Estudiante: ${nombre}<br>
-    Asistencia: ${asistencia}<br>
-    Promedio: ${promedio}<br>
+    Estudiante: ${nombre} (${matricula})<br>
     Riesgo: ${riesgo}<br>
+    Asistencia: ${asistencia}%, Promedio: ${promedio}<br>
+    Tareas entregadas: ${tareas}, Participación: ${participacion}<br>
+    Horas de estudio: ${horas}, Entrega evidencias: ${evidencias}<br>
+    Nivel de comprensión: ${comprension}, Uso de recursos: ${recursos}<br>
+    Trabajo en grupo: ${grupo}, Motivación: ${motivacion}<br>
+    Asistencia a tutorías: ${tutorias}<br>
   `
 })
 </script>
